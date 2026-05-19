@@ -1,7 +1,15 @@
+import { NavBar } from "@/components/layout/NavBar";
+import { Hero } from "@/components/home/Hero";
+import { BackgroundWaves } from "@/components/layout/BackgroundWaves";
+import { FeaturedProperties } from "@/components/home/FeaturedProperties";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-black">
-      <h1 className="text-6xl font-bold text-white">Welcome to Hogaroo!</h1>
-    </main>
+    <div className="relative min-h-screen overflow-x-hidden bg-white text-gray-900">
+      <BackgroundWaves />
+      <NavBar />
+      <Hero />
+      <FeaturedProperties />
+    </div>
   );
 }
