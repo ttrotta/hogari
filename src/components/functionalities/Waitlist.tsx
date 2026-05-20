@@ -27,13 +27,13 @@ export default function WaitlistForm() {
       action={formAction}
       className="relative mt-10 flex w-full flex-col items-center gap-4 sm:flex-row md:w-auto"
     >
-      <div className="border-brand-light hover:border-primary focus-visible:ring-brand-light flex w-full items-center rounded-full border-4 px-8 py-4 text-lg font-bold text-white shadow-lg transition-all focus-within:scale-105 hover:scale-105 focus:outline-none focus-visible:ring-4 sm:w-auto">
+      <div className="border-brand-light hover:border-primary focus-visible:ring-brand-light flex w-full items-center rounded-full border-4 bg-white px-8 py-4 text-lg font-bold shadow-lg transition-all focus-within:scale-105 hover:scale-105 focus:outline-none focus-visible:ring-4 sm:w-auto">
         <input
           type="email"
           name="email"
           required
           disabled={isPending}
-          className="w-full bg-transparent text-black focus:outline-none disabled:opacity-50"
+          className="w-full bg-transparent text-gray-900 placeholder:text-gray-400 focus:outline-none disabled:opacity-50"
           placeholder="Email"
         />
       </div>

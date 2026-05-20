@@ -2,7 +2,7 @@ import { User, Map, Heart } from "lucide-react";
 
 export function SolutionSteps() {
   return (
-    <section className="bg-primary-light/30 py-24 px-6 md:px-12 w-full" id="como-funciona">
+    <section className="bg-section-lavender py-24 px-6 md:px-12 w-full" id="como-funciona">
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-extrabold text-gray-900 md:text-5xl tracking-tight">

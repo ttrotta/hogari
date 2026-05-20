@@ -26,7 +26,7 @@ export function BenefitsGrid() {
 
   return (
     <section
-      className="bg-brand-purple/40 w-full px-6 py-24 md:px-12"
+      className="bg-section-purple w-full px-6 py-24 md:px-12"
       id="beneficios"
     >
       <div className="mx-auto max-w-7xl">

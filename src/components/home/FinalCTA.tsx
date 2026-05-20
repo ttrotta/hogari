@@ -1,6 +1,6 @@
 export function FinalCTA() {
   return (
-    <section className="bg-brand-purple/40 w-full px-6 py-24 md:px-12">
+    <section className="bg-section-purple w-full px-6 py-24 md:px-12">
       <div className="mx-auto max-w-4xl text-center">
         <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 md:text-6xl">
           ¿Listo para encontrar tu próximo hogar?

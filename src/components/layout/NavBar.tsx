@@ -4,7 +4,7 @@ import { UserRound } from "lucide-react";
 
 export function NavBar() {
   return (
-    <nav className="bg-brand-light fixed top-0 z-50 flex w-full items-center justify-between px-4 py-3 shadow-sm md:px-10">
+    <nav className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-gray-200/60 bg-white/80 px-4 py-3 backdrop-blur-lg md:px-10">
       <div className="flex flex-1 items-center gap-3">
         <Link href="#hero" className="flex items-center gap-2">
           <Image

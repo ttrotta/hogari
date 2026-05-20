@@ -6,6 +6,7 @@ import { BenefitsGrid } from "@/components/home/BenefitsGrid";
 import { TrustSection } from "@/components/home/TrustSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { Footer } from "@/components/layout/Footer";
+import { WaveDivider } from "@/components/layout/WaveDivider";
 
 export default function Home() {
   return (
@@ -13,11 +14,17 @@ export default function Home() {
       <NavBar />
       <Hero />
       <ProblemSection />
+      <WaveDivider topColor="#c9abf2" bottomColor="#fbf7fd" />
       <SolutionSteps />
+      <WaveDivider topColor="#fbf7fd" bottomColor="#c9abf2" />
       <BenefitsGrid />
+      <WaveDivider topColor="#c9abf2" bottomColor="#ffffff" />
       <TrustSection />
+      <WaveDivider topColor="#ffffff" bottomColor="#c9abf2" />
       <FinalCTA />
+      <WaveDivider topColor="#c9abf2" bottomColor="#e4d8f8" />
       <Footer />
     </div>
   );
 }
+
