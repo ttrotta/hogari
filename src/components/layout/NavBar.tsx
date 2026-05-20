@@ -17,14 +17,14 @@ export function NavBar() {
       </div>
 
       <div className="hidden items-center gap-8 font-medium md:flex">
-        <Link href="#" className="hover:text-brand-purple transition-colors">
-          Alquilá
+        <Link href="#como-funciona" className="hover:text-brand-purple transition-colors">
+          Cómo Funciona
         </Link>
-        <Link href="#" className="hover:text-brand-purple transition-colors">
-          Nosotros
+        <Link href="#beneficios" className="hover:text-brand-purple transition-colors">
+          Beneficios
         </Link>
-        <Link href="#" className="hover:text-brand-purple transition-colors">
-          Legal
+        <Link href="#comunidad" className="hover:text-brand-purple transition-colors">
+          Comunidad
         </Link>
       </div>
 

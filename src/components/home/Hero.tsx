@@ -1,6 +1,25 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
+const ANIMATED_STYLES = [
+  "text-brand-purple font-extrabold",
+  "text-primary-dark italic font-medium",
+  "text-gray-900 font-black tracking-wide",
+  "text-primary font-bold",
+];
 
 export function Hero() {
+  const [styleIdx, setStyleIdx] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStyleIdx((prev) => (prev + 1) % ANIMATED_STYLES.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <main className="relative z-10 mx-auto flex min-h-[calc(100vh-88px)] max-w-7xl flex-col items-center justify-between px-6 py-12 md:flex-row md:px-12 md:py-20">
       <div className="z-20 mt-8 flex w-full flex-1 flex-col items-start md:mt-0">
@@ -8,12 +27,24 @@ export function Hero() {
           Hogaroo
         </div>
 
-        <div className="bg-brand-light border-brand-purple/20 mt-16 flex w-full max-w-xl items-center rounded-full border px-8 py-5 shadow-sm transition-shadow hover:shadow-md md:mt-24">
-          <input
-            type="text"
-            placeholder="¿Qué estás buscando?"
-            className="w-full bg-transparent text-xl text-gray-900 placeholder-gray-600 outline-none md:text-2xl"
-          />
+        <div className="mt-8 md:mt-12">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl text-gray-900 leading-tight">
+            <span className={`transition-all duration-500 ease-in-out ${ANIMATED_STYLES[styleIdx]}`}>
+              Encontrá alquileres que encajen con vos.
+            </span>
+          </h1>
+          <p className="mt-6 max-w-lg text-lg text-gray-600 md:text-xl leading-relaxed">
+            Recomendaciones inteligentes basadas en tu estilo de vida, ubicación ideal y el contexto de cada barrio. Sin perder tiempo.
+          </p>
+        </div>
+
+        <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+          <button className="bg-primary hover:bg-primary-dark w-full sm:w-auto rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-light">
+            Unirme a la beta
+          </button>
+          <span className="text-sm font-medium text-gray-500">
+            Acceso anticipado para primeros usuarios
+          </span>
         </div>
       </div>
 
