@@ -4,43 +4,53 @@ export function BenefitsGrid() {
   const benefits = [
     {
       title: "Menos tiempo buscando",
-      description: "Olvidate de filtrar opciones inútiles. Te mostramos solo lo que hace match con tu perfil."
+      description:
+        "Olvidate de filtrar opciones inútiles. Te mostramos solo lo que hace match con tu perfil.",
     },
     {
       title: "Contexto real del barrio",
-      description: "Sabé qué hay cerca antes de mudarte. Universidades, subtes, supermercados y seguridad."
+      description:
+        "Sabé qué hay cerca antes de mudarte. Universidades, subtes, supermercados y seguridad.",
     },
     {
       title: "Recomendaciones a medida",
-      description: "Nuestro algoritmo piensa en tu estilo de vida, no solo en tu presupuesto."
+      description:
+        "Nuestro algoritmo piensa en tu estilo de vida, no solo en tu presupuesto.",
     },
     {
       title: "Mejores decisiones",
-      description: "Información clara y transparente para que alquiles con seguridad y confianza."
-    }
+      description:
+        "Información clara y transparente para que alquiles con seguridad y confianza.",
+    },
   ];
 
   return (
-    <section className="bg-white py-24 px-6 md:px-12 w-full" id="beneficios">
+    <section
+      className="bg-brand-purple/40 w-full px-6 py-24 md:px-12"
+      id="beneficios"
+    >
       <div className="mx-auto max-w-7xl">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid items-center gap-16 md:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-extrabold text-gray-900 md:text-5xl tracking-tight leading-tight">
+            <h2 className="text-3xl leading-tight font-extrabold tracking-tight text-gray-900 md:text-5xl">
               Más que un simple buscador de propiedades
             </h2>
             <p className="mt-6 text-lg text-gray-600 md:text-xl">
-              Conectamos tus necesidades reales con el lugar correcto. Diseñamos Hogaroo para que el estrés de mudarte desaparezca por completo.
+              Conectamos tus necesidades reales con el lugar correcto. Diseñamos
+              Hogaroo para que el estrés de mudarte desaparezca por completo.
             </p>
           </div>
-          
-          <div className="grid sm:grid-cols-2 gap-8">
+
+          <div className="grid gap-8 sm:grid-cols-2">
             {benefits.map((benefit, idx) => (
               <div key={idx} className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-6 w-6 text-primary" />
-                  <h3 className="text-xl font-bold text-gray-900">{benefit.title}</h3>
+                  <CheckCircle2 className="text-primary h-6 w-6" />
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {benefit.title}
+                  </h3>
                 </div>
-                <p className="text-gray-600 pl-8">{benefit.description}</p>
+                <p className="pl-8 text-gray-600">{benefit.description}</p>
               </div>
             ))}
           </div>

@@ -1,6 +1,5 @@
 import { NavBar } from "@/components/layout/NavBar";
 import { Hero } from "@/components/home/Hero";
-import { BackgroundWaves } from "@/components/layout/BackgroundWaves";
 import { ProblemSection } from "@/components/home/ProblemSection";
 import { SolutionSteps } from "@/components/home/SolutionSteps";
 import { BenefitsGrid } from "@/components/home/BenefitsGrid";
@@ -10,8 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-white text-gray-900 flex flex-col">
-      <BackgroundWaves />
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-white text-gray-900">
       <NavBar />
       <Hero />
       <ProblemSection />
