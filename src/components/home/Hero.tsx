@@ -6,7 +6,7 @@ import Waitlist from "@/components/functionalities/Waitlist";
 import { WaveDivider } from "@/components/layout/WaveDivider";
 
 const ANIMATED_STYLES = [
-  "text-brand-purple font-extrabold",
+  "text-brand-orange font-extrabold",
   "text-primary-dark italic font-medium",
   "text-gray-900 font-black tracking-wide",
   "text-primary font-bold",
@@ -28,7 +28,7 @@ export function Hero() {
       <div className="absolute inset-0 -z-20 h-full w-full">
         <Image
           src="/fontmap.webp"
-          alt="Hogaroo Background Map"
+          alt="Hogari Background Map"
           fill
           className="object-cover object-center opacity-30"
           priority
@@ -40,8 +40,8 @@ export function Hero() {
         {/* Mobile Mascot - Peeking from top right */}
         <div className="absolute top-8 -right-16 z-0 h-[260px] w-[260px] md:hidden">
           <Image
-            src="/mascot-hero.png"
-            alt="Hogaroo Owl Mascot"
+            src="/mascot-hogari-hero.png"
+            alt="Hogari Mascot"
             fill
             sizes="(max-width: 768px) 50vw, 0vw"
             className="object-contain drop-shadow-2xl"
@@ -49,9 +49,9 @@ export function Hero() {
           />
         </div>
 
-        <div className="z-20 mt-20 flex w-full flex-1 flex-col items-start md:mt-0">
-          <div className="bg-brand-purple -rotate-3 transform rounded-xl px-6 py-4 text-6xl leading-none font-extrabold text-white shadow-2xl transition-transform duration-300 hover:-rotate-1 md:px-10 md:py-6 md:text-8xl lg:text-[140px]">
-            Hogaroo
+        <div className="z-20 mt-20 flex w-full flex-1 flex-col items-start md:mt-16">
+          <div className="bg-brand-orange -rotate-3 transform rounded-xl px-6 py-4 text-6xl leading-none font-extrabold text-white shadow-2xl transition-transform duration-300 hover:-rotate-1 md:px-10 md:py-6 md:text-8xl lg:text-[140px]">
+            Hogarí
           </div>
 
           <div className="mt-12 md:mt-12">
@@ -77,8 +77,8 @@ export function Hero() {
         <div className="relative z-10 mt-16 hidden w-full flex-1 justify-center md:mt-0 md:flex md:justify-end">
           <div className="relative md:h-[600px] md:w-[600px] md:translate-x-12 xl:h-[700px] xl:w-[700px]">
             <Image
-              src="/mascot-hero.png"
-              alt="Hogaroo Owl Mascot"
+              src="/mascot-hogari-hero.png"
+              alt="Hogari Mascot"
               fill
               sizes="50vw"
               className="object-contain drop-shadow-2xl"
@@ -88,7 +88,7 @@ export function Hero() {
         </div>
       </div>
 
-      <WaveDivider topColor="transparent" bottomColor="#c9abf2" />
+      <WaveDivider topColor="transparent" bottomColor="#FFD49A" />
     </section>
   );
 }

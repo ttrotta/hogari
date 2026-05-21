@@ -7,14 +7,14 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
         <div className="flex items-center gap-3">
           <Image
-            src="/mini-hogaroo-logo.png"
-            alt="Hogaroo Logo"
+            src="/mini-hogari-logo.png"
+            alt="Hogarí Mini Logo"
             width={32}
             height={32}
             className="object-contain grayscale transition-all duration-300 hover:grayscale-0"
           />
           <span className="text-xl font-bold tracking-tight text-gray-900">
-            Hogaroo
+            Hogarí
           </span>
         </div>
 
@@ -37,7 +37,7 @@ export function Footer() {
         </div>
 
         <div className="text-sm text-gray-400">
-          © {new Date().getFullYear()} Hogaroo.
+          © {new Date().getFullYear()} Hogarí.
         </div>
       </div>
     </footer>
