@@ -1,1 +1,1 @@
-## Welcome to Hogaroo!
+## Welcome to Hogarí!

@@ -8,8 +8,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Hogaroo",
-  description: "Hogaroo is a platform for finding rental properties.",
+  title: "Hogarí",
+  description: "Encontrá el hogar que buscás con Hogarí.",
 };
 
 export default function RootLayout({
