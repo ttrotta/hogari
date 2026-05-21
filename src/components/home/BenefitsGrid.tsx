@@ -26,7 +26,7 @@ export function BenefitsGrid() {
 
   return (
     <section
-      className="bg-section-purple w-full px-6 py-24 md:px-12"
+      className="bg-section-orange w-full px-6 py-24 md:px-12"
       id="beneficios"
     >
       <div className="mx-auto max-w-7xl">
@@ -37,7 +37,7 @@ export function BenefitsGrid() {
             </h2>
             <p className="mt-6 text-lg text-gray-600 md:text-xl">
               Conectamos tus necesidades reales con el lugar correcto. Diseñamos
-              Hogaroo para que el estrés de mudarte desaparezca por completo.
+              Hogarí para que el estrés de mudarte desaparezca por completo.
             </p>
           </div>
 

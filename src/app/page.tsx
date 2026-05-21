@@ -14,15 +14,15 @@ export default function Home() {
       <NavBar />
       <Hero />
       <ProblemSection />
-      <WaveDivider topColor="#c9abf2" bottomColor="#fbf7fd" />
+      <WaveDivider topColor="#FFD49A" bottomColor="#FFFAF3" />
       <SolutionSteps />
-      <WaveDivider topColor="#fbf7fd" bottomColor="#c9abf2" />
+      <WaveDivider topColor="#FFFAF3" bottomColor="#FFD49A" />
       <BenefitsGrid />
-      <WaveDivider topColor="#c9abf2" bottomColor="#ffffff" />
+      <WaveDivider topColor="#FFD49A" bottomColor="#ffffff" />
       <TrustSection />
-      <WaveDivider topColor="#ffffff" bottomColor="#c9abf2" />
+      <WaveDivider topColor="#ffffff" bottomColor="#FFD49A" />
       <FinalCTA />
-      <WaveDivider topColor="#c9abf2" bottomColor="#e4d8f8" />
+      <WaveDivider topColor="#FFD49A" bottomColor="#FFE4BA" />
       <Footer />
     </div>
   );

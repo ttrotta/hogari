@@ -4,36 +4,36 @@ import { UserRound } from "lucide-react";
 
 export function NavBar() {
   return (
-    <nav className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-gray-200/60 bg-white/80 px-4 py-3 backdrop-blur-lg md:px-10">
+    <nav className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-brand-orange/15 bg-[#FFFAF3]/85 px-4 py-3 shadow-sm shadow-brand-orange/5 backdrop-blur-xl md:px-10">
       <div className="flex flex-1 items-center gap-3">
         <Link href="#hero" className="flex items-center gap-2">
           <Image
-            src="/mini-hogaroo-logo.png"
-            alt="Hogaroo Logo"
+            src="/mini-hogari-logo.png"
+            alt="Hogarí Mini Logo"
             width={48}
             height={48}
             className="object-contain"
           />
-          <span className="text-2xl font-bold tracking-tight">Hogaroo</span>
+          <span className="text-2xl font-bold tracking-tight">Hogarí</span>
         </Link>
       </div>
 
       <div className="hidden items-center justify-center gap-8 font-medium md:flex">
         <Link
           href="#como-funciona"
-          className="hover:text-brand-purple transition-colors"
+          className="hover:text-brand-orange transition-colors"
         >
           Cómo Funciona
         </Link>
         <Link
           href="#beneficios"
-          className="hover:text-brand-purple transition-colors"
+          className="hover:text-brand-orange transition-colors"
         >
           Beneficios
         </Link>
         <Link
           href="#comunidad"
-          className="hover:text-brand-purple transition-colors"
+          className="hover:text-brand-orange transition-colors"
         >
           Comunidad
         </Link>
