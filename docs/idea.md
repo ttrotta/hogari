@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This file serves as the **Constitution and Context Guide** for autonomous software development agents (such as OpenClaw, Antigravity, or other MCP-based clients) operating on this repository.
+This file serves as the **Constitution and Context Guide** for autonomous software development agents (such as Antigravity, or other MCP-based clients) operating on this repository.
 
 By reading this file, the agent will understand the project architecture, the predefined technology stack, and the mandatory coding standards.
 
