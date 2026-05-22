@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import Waitlist from "@/components/functionalities/Waitlist";
+import  Waitlist from "./Waitlist";
 import { WaveDivider } from "@/components/layout/WaveDivider";
 
 const ANIMATED_STYLES = [

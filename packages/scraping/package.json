@@ -1,0 +1,17 @@
+{
+  "name": "@hogari/scraping",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scrape": "tsx src/index.ts",
+    "scrape:zonaprop": "tsx src/scrapers/zonaprop.ts",
+    "scrape:argenprop": "tsx src/scrapers/argenprop.ts",
+    "scrape:mercadolibre": "tsx src/scrapers/mercadolibre.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5"
+  }
+}

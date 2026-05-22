@@ -1,4 +1,4 @@
-# Architecture Recommendation for Hogaroo
+# Architecture of Hogari
 
 ## TL;DR
 
@@ -11,7 +11,7 @@ Use **Screaming Architecture** as the organizing philosophy (folders scream the 
 Clean Architecture (ports & adapters, hexagonal, onion — same family) enforces strict dependency inversion through interfaces at every boundary. In a TypeScript/Next.js context this means:
 
 - **Interface explosion.** You'd need `PropertyRepository` interface → `PostgresPropertyRepository` implementation → injection container... for every data access point. With 4 people, this ceremony slows you down more than it protects you.
-- **Fighting the framework.** Next.js App Router *is* the controller layer. Server Actions *are* the use-cases entrypoint. Wrapping them in abstract interfaces to "decouple from the framework" defeats the point — you're **not** going to swap Next.js mid-project.
+- **Fighting the framework.** Next.js App Router _is_ the controller layer. Server Actions _are_ the use-cases entrypoint. Wrapping them in abstract interfaces to "decouple from the framework" defeats the point — you're **not** going to swap Next.js mid-project.
 - **Overkill for your team size.** Clean Arch shines on 15+ person teams where modules need to be independently deployable. With 4 people, direct communication replaces most of what the architecture enforces.
 
 > [!TIP]
@@ -21,23 +21,23 @@ Clean Architecture (ports & adapters, hexagonal, onion — same family) enforces
 
 ## Why Screaming Architecture Fits
 
-Screaming Architecture (coined by Uncle Bob himself) says: *when you look at the folder structure, it should scream the domain, not the framework.* Your repo should scream **"real estate platform"**, not **"Next.js app"**.
+Screaming Architecture (coined by Uncle Bob himself) says: _when you look at the folder structure, it should scream the domain, not the framework._ Your repo should scream **"real estate platform"**, not **"Next.js app"**.
 
 This directly solves your team coordination problem:
 
-| Problem | How Screaming Arch Solves It |
-|---|---|
-| 4 devs stepping on each other | Each dev owns a **feature domain** folder — minimal merge conflicts |
-| New dev onboarding | Open the `src/` folder → immediately understand what the app does |
-| Scrapers mixed with UI code | `scraping/` is a completely separate workspace — can't accidentally import UI utils |
-| AI logic scattered everywhere | `ai/` module owns all LLM orchestration in one place |
+| Problem                       | How Screaming Arch Solves It                                                        |
+| ----------------------------- | ----------------------------------------------------------------------------------- |
+| 4 devs stepping on each other | Each dev owns a **feature domain** folder — minimal merge conflicts                 |
+| New dev onboarding            | Open the `src/` folder → immediately understand what the app does                   |
+| Scrapers mixed with UI code   | `scraping/` is a completely separate workspace — can't accidentally import UI utils |
+| AI logic scattered everywhere | `ai/` module owns all LLM orchestration in one place                                |
 
 ---
 
 ## Recommended Folder Structure
 
 ```
-hogaroo/
+hogari/
 ├── packages/
 │   └── scraping/                    ← EXTRACTION LAYER (independent workspace)
 │       ├── package.json
@@ -144,20 +144,20 @@ graph TB
         A["packages/scraping/"]
         A1["Scrapers"] --> A2["Normalizers"] --> A3["DB Loaders"]
     end
-    
+
     subgraph "2. Data Layer"
         B["src/lib/db/"]
         B1["PostgreSQL + PostGIS"]
         B2["Migrations"]
         B3["Connection Client"]
     end
-    
+
     subgraph "3. Application Layer"
         C["src/app/ (routes)"]
         D["src/features/ (domain)"]
         E["src/components/ (shared UI)"]
     end
-    
+
     A3 -->|"writes to"| B1
     D -->|"queries"| B1
     C -->|"imports from"| D
@@ -166,13 +166,13 @@ graph TB
 
 ### Rules of Dependency
 
-| Module | Can Import From | Cannot Import From |
-|---|---|---|
-| `src/app/` (routes) | `features/*`, `components/*`, `lib/*` | `packages/scraping/` |
-| `src/features/*` | `lib/*`, other `features/*` (sparingly) | `app/`, `packages/scraping/` |
-| `src/components/` | `lib/utils` | `features/*`, `app/` |
-| `src/lib/` | Nothing internal | Everything else |
-| `packages/scraping/` | `lib/db` (shared connection config only) | Everything in `src/` |
+| Module               | Can Import From                          | Cannot Import From           |
+| -------------------- | ---------------------------------------- | ---------------------------- |
+| `src/app/` (routes)  | `features/*`, `components/*`, `lib/*`    | `packages/scraping/`         |
+| `src/features/*`     | `lib/*`, other `features/*` (sparingly)  | `app/`, `packages/scraping/` |
+| `src/components/`    | `lib/utils`                              | `features/*`, `app/`         |
+| `src/lib/`           | Nothing internal                         | Everything else              |
+| `packages/scraping/` | `lib/db` (shared connection config only) | Everything in `src/`         |
 
 > [!IMPORTANT]
 > **The critical rule:** dependencies flow inward. Routes → Features → Lib. Never the reverse. This is the one Clean Architecture principle you **must** enforce.
@@ -194,7 +194,7 @@ features/properties/
 **Why this works with Next.js:**
 
 - **Server Actions as use-cases.** `"use server"` functions in `actions/` are your application logic. They validate input (Zod), call `queries.ts`, maybe invoke `ai/actions/`, and return typed results. No need for an abstract "use case" class.
-- **queries.ts as repository.** Direct SQL queries with PostGIS. If you later adopt Drizzle or Prisma, you swap this one file per feature. No interface needed — the file boundary *is* the contract.
+- **queries.ts as repository.** Direct SQL queries with PostGIS. If you later adopt Drizzle or Prisma, you swap this one file per feature. No interface needed — the file boundary _is_ the contract.
 - **types.ts as domain model.** Plain TypeScript types + Zod schemas. No classes, no inheritance — this is TypeScript, not Java.
 
 ---
@@ -203,12 +203,12 @@ features/properties/
 
 With 4 people, assign **domain ownership**, not layer ownership:
 
-| Person | Primary Domain | Secondary |
-|---|---|---|
-| Dev A | `features/properties/` + `features/search/` | `lib/db/` |
-| Dev B | `features/map/` | `components/ui/` |
-| Dev C | `features/ai/` + `features/search/` | `lib/` |
-| Dev D | `packages/scraping/` | `lib/db/migrations/` |
+| Person | Primary Domain                              | Secondary            |
+| ------ | ------------------------------------------- | -------------------- |
+| Dev A  | `features/properties/` + `features/search/` | `lib/db/`            |
+| Dev B  | `features/map/`                             | `components/ui/`     |
+| Dev C  | `features/ai/` + `features/search/`         | `lib/`               |
+| Dev D  | `packages/scraping/`                        | `lib/db/migrations/` |
 
 > [!TIP]
 > **Vertical slicing** (each dev owns a full feature from UI to data) produces fewer merge conflicts than horizontal slicing (one person does all UI, another all DB). The scraper dev (Dev D) is naturally isolated in `packages/scraping/`.
@@ -252,18 +252,18 @@ For the split-screen search page (list + map), you'll need shared state. Recomme
 
 ## Summary: What You're Actually Using
 
-| Concept | From Clean Arch? | From Screaming Arch? | Custom? |
-|---|---|---|---|
-| Dependency direction (inward only) | ✅ | | |
-| Domain types isolated in `types.ts` | ✅ | | |
-| Folders named after business domains | | ✅ | |
-| Feature-based code organization | | ✅ | |
-| Server Actions as use-cases | | | ✅ (Next.js native) |
-| `queries.ts` as thin data access | ✅ (simplified) | | |
-| Scrapers in separate workspace | | | ✅ (monorepo) |
-| No DI container, no abstract interfaces | | | ✅ (pragmatic) |
+| Concept                                 | From Clean Arch? | From Screaming Arch? | Custom?             |
+| --------------------------------------- | ---------------- | -------------------- | ------------------- |
+| Dependency direction (inward only)      | ✅               |                      |                     |
+| Domain types isolated in `types.ts`     | ✅               |                      |                     |
+| Folders named after business domains    |                  | ✅                   |                     |
+| Feature-based code organization         |                  | ✅                   |                     |
+| Server Actions as use-cases             |                  |                      | ✅ (Next.js native) |
+| `queries.ts` as thin data access        | ✅ (simplified)  |                      |                     |
+| Scrapers in separate workspace          |                  |                      | ✅ (monorepo)       |
+| No DI container, no abstract interfaces |                  |                      | ✅ (pragmatic)      |
 
 ---
 
 > [!NOTE]
-> This architecture is designed to **evolve**. If Hogaroo grows to 10+ devs or needs microservices, the `features/` modules are already isolated enough to extract. But don't over-engineer for scale you don't have yet. Ship the MVP, validate the product, then refactor when the pain is real.
+> This architecture is designed to **evolve**. If Hogari grows to 10+ devs or needs microservices, the `features/` modules are already isolated enough to extract. But don't over-engineer for scale you don't have yet. Ship the MVP, validate the product, then refactor when the pain is real.
