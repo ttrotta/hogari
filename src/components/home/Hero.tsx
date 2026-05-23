@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import  Waitlist from "./Waitlist";
+import Waitlist from "./Waitlist";
 import { WaveDivider } from "@/components/layout/WaveDivider";
 
 const ANIMATED_STYLES = [
@@ -36,9 +36,9 @@ export function Hero() {
         <div className="absolute inset-0 bg-white/40" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-7xl flex-col items-center justify-between px-6 py-28 md:flex-row md:overflow-visible md:px-12 md:py-20">
+      <div className="relative mx-auto flex min-h-[calc(100vh-88px)] w-full max-w-7xl flex-col items-center justify-between px-6 py-28 md:flex-row md:overflow-visible md:px-12 md:py-[min(5vh,3rem)] xl:py-[min(6vh,4rem)] 2xl:py-[min(8vh,5rem)]">
         {/* Mobile Mascot - Peeking from top right */}
-        <div className="absolute top-8 -right-16 z-0 h-[260px] w-[260px] md:hidden">
+        <div className="absolute top-14 -right-16 z-0 h-65 w-65 md:hidden">
           <Image
             src="/mascot-hogari-hero.png"
             alt="Hogari Mascot"
@@ -49,20 +49,20 @@ export function Hero() {
           />
         </div>
 
-        <div className="z-20 mt-20 flex w-full flex-1 flex-col items-start md:mt-16">
-          <div className="bg-brand-orange -rotate-3 transform rounded-xl px-6 py-4 text-6xl leading-none font-extrabold text-white shadow-2xl transition-transform duration-300 hover:-rotate-1 md:px-10 md:py-6 md:text-8xl lg:text-[140px]">
+        <div className="z-20 mt-8 flex w-full flex-1 flex-col items-start md:mt-[min(8vh,6rem)] 2xl:mt-[min(10vh,8rem)]">
+          <div className="bg-brand-orange -rotate-3 transform rounded-xl px-6 py-4 text-[min(60px,15vw)] leading-none font-extrabold text-white shadow-2xl transition-transform duration-300 hover:-rotate-1 md:px-6 md:py-3 lg:px-8 lg:py-4 xl:text-[clamp(60px,10vh,90px)] 2xl:px-10 2xl:py-6 2xl:text-[clamp(90px,13vh,140px)]">
             Hogarí
           </div>
 
-          <div className="mt-12 md:mt-12">
-            <h1 className="text-3xl leading-tight text-gray-900 md:text-5xl lg:text-6xl">
+          <div className="mt-12 md:mt-[min(3vh,2rem)] 2xl:mt-[min(4vh,3rem)]">
+            <h1 className="text-3xl leading-tight text-gray-900 md:text-[clamp(30px,6vh,48px)] 2xl:text-[clamp(40px,7vh,60px)]">
               <span
                 className={`transition-all duration-500 ease-in-out ${ANIMATED_STYLES[styleIdx]}`}
               >
                 Encontrá alquileres que encajen con vos.
               </span>
             </h1>
-            <p className="mt-10 max-w-lg text-lg leading-relaxed text-gray-600 md:text-xl">
+            <p className="mt-10 max-w-lg text-lg leading-relaxed text-gray-600 md:text-lg 2xl:mt-[min(3vh,2.5rem)] 2xl:text-xl">
               Recomendaciones inteligentes basadas en tu estilo de vida,
               ubicación ideal y el contexto de cada barrio. Sin perder tiempo.
             </p>
@@ -74,8 +74,8 @@ export function Hero() {
         </div>
 
         {/* Desktop Mascot */}
-        <div className="relative z-10 mt-16 hidden w-full flex-1 justify-center md:mt-0 md:flex md:justify-end">
-          <div className="relative md:h-[600px] md:w-[600px] md:translate-x-12 xl:h-[700px] xl:w-[700px]">
+        <div className="relative z-10 mt-14 hidden w-full flex-1 justify-center md:mt-0 md:flex md:justify-end">
+          <div className="relative md:h-[min(40vh,400px)] md:w-[min(40vh,400px)] md:translate-x-8 lg:h-[min(50vh,500px)] lg:w-[min(50vh,500px)] xl:h-[min(55vh,600px)] xl:w-[min(55vh,600px)] xl:translate-x-12 2xl:h-[min(65vh,700px)] 2xl:w-[min(65vh,700px)]">
             <Image
               src="/mascot-hogari-hero.png"
               alt="Hogari Mascot"
