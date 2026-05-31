@@ -1,7 +1,6 @@
 import importlib
 import argparse
 import sys
-import os
 
 def main():
     parser = argparse.ArgumentParser(description="Hogari Scraping Pipeline")

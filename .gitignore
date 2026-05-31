@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 #scraping
-/packages/scraping/node_modules/
+/packages/scraping/node_modules/*
 
 # Python cache files
 __pycache__/
