@@ -15,7 +15,7 @@ export default function SearchPage() {
 
       {/* Right: Map */}
       <div className="hidden md:block md:w-1/2">
-        <MapView />
+        <MapView properties={[]} />
       </div>
     </div>
   );
