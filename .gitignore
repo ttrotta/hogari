@@ -42,3 +42,12 @@ next-env.d.ts
 
 #scraping
 /packages/scraping/node_modules/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
