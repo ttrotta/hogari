@@ -41,17 +41,18 @@ hogari/
 ├── packages/
 │   └── scraping/                    ← EXTRACTION LAYER (independent workspace)
 │       ├── package.json
-│       ├── src/
-│       │   ├── scrapers/
-│       │   │   ├── zonaprop.ts
-│       │   │   ├── argenprop.ts
-│       │   │   └── mercadolibre.ts
-│       │   ├── normalizers/
-│       │   │   └── property-normalizer.ts
-│       │   ├── loaders/
-│       │   │   └── db-loader.ts
-│       │   └── index.ts             ← Orchestrator: scrape → normalize → load
-│       └── tsconfig.json
+│       ├── README.md
+│       ├── main.py                  ← CLI execution entry point
+│       ├── scrapers/
+│       │   ├── __init__.py
+│       │   ├── base.py              ← Base scraper (delays, robots.txt, user-agent)
+│       │   └── [webpage_name].py    ← Site-specific scraper (e.g., rentola.py, inm.py)
+│       ├── normalizers/
+│       │   ├── __init__.py
+│       │   └── property_normalizer.py ← Property normalization to database schema
+│       └── loaders/
+│           ├── __init__.py
+│           └── db_loader.py         ← DB loader/UPSERT script using psycopg2
 │
 ├── src/                              ← APPLICATION LAYER (Next.js)
 │   ├── app/                          ← Routes only. Thin. Delegates everything.
@@ -172,7 +173,7 @@ graph TB
 | `src/features/*`     | `lib/*`, other `features/*` (sparingly)  | `app/`, `packages/scraping/` |
 | `src/components/`    | `lib/utils`                              | `features/*`, `app/`         |
 | `src/lib/`           | Nothing internal                         | Everything else              |
-| `packages/scraping/` | `lib/db` (shared connection config only) | Everything in `src/`         |
+| `packages/scraping/` | Environment variables (via `.env.local`) | Everything in `src/`         |
 
 > [!IMPORTANT]
 > **The critical rule:** dependencies flow inward. Routes → Features → Lib. Never the reverse. This is the one Clean Architecture principle you **must** enforce.
@@ -226,10 +227,10 @@ With 4 people, assign **domain ownership**, not layer ownership:
 
 The `packages/scraping/` workspace is **critical**. It deserves full isolation because:
 
-- Different runtime requirements (Playwright needs a browser, might run in a cron job or CI, not in Vercel).
-- Different testing strategy (integration tests against real sites, mocking, rate limiting).
-- Different deploy target (a VPS with cron, a GitHub Action, or a dedicated worker — not your Next.js deployment).
-- The scraper dev can work without ever touching the Next.js codebase.
+- **Language & Runtime:** It is written in Python (using `BeautifulSoup`, `requests`, `psycopg2-binary`, and `python-dotenv`), which is better suited for data extraction tasks than Next.js.
+- **Execution:** It runs as a CLI command via `pnpm --filter @hogari/scraping scrape --source rentola --city bahia-blanca --limit 2` to fetch, normalize, and load data.
+- **Independent Testing:** Integration tests and scrapers run locally or in a dedicated VPS/worker, not in the Next.js Vercel environment.
+- **Direct Database Integration:** It writes directly to the Neon PostgreSQL database via a dedicated loader utilizing psycopg2 and raw SQL.
 
 Add it to your `pnpm-workspace.yaml`:
 
