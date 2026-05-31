@@ -4,10 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "scrape": "tsx src/index.ts",
-    "scrape:zonaprop": "tsx src/scrapers/zonaprop.ts",
-    "scrape:argenprop": "tsx src/scrapers/argenprop.ts",
-    "scrape:mercadolibre": "tsx src/scrapers/mercadolibre.ts"
+    "scrape": "python3 main.py"
   },
   "dependencies": {},
   "devDependencies": {
