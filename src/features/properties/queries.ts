@@ -53,6 +53,10 @@ export async function findProperties(
     params.push(filters.radiusKm * 1000);
   }
 
+  const limit = filters.limit ?? 25;
+  const limitIndex = paramIndex++;
+  params.push(limit);
+
   const whereClause =
     queryParts.length > 0 ? `WHERE ${queryParts.join(" AND ")}` : "";
 
@@ -82,7 +86,7 @@ export async function findProperties(
     FROM properties
     ${whereClause}
     ORDER BY created_at DESC
-    LIMIT 50;
+    LIMIT $${limitIndex};
   `;
 
   const result = await pool.query(query, params);
