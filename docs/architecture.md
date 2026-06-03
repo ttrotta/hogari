@@ -85,7 +85,7 @@ hogari/
 │   │   │
 │   │   ├── map/
 │   │   │   ├── components/
-│   │   │   │   ├── MapView.tsx       ← Client component with Mapbox
+│   │   │   │   ├── MapView.tsx       ← Client component with Maplibre
 │   │   │   │   ├── MapMarker.tsx
 │   │   │   │   └── MapControls.tsx
 │   │   │   └── hooks/
