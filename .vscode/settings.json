@@ -28,6 +28,7 @@
     "**/postcss.config.mjs": true,
     "**/tailwind.config.ts": true,
     "**/skills-lock.json": true,
+    "**/tsconfig.tsbuildinfo": true,
 
     ".next": true
   }
