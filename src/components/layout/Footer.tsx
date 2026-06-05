@@ -3,40 +3,47 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-brand-light mt-auto w-full px-6 py-12 md:px-12">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
+    <footer className="relative mt-auto w-full bg-[#1a1207] px-6 py-14 md:px-12">
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-[#FFAD4E]/30 to-transparent" />
+
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row">
         <div className="flex items-center gap-3">
           <Image
             src="/mini-hogari-logo.png"
             alt="Hogarí Mini Logo"
             width={32}
             height={32}
-            className="object-contain grayscale transition-all duration-300 hover:grayscale-0"
+            className="object-contain"
           />
-          <span className="text-xl font-bold tracking-tight text-gray-900">
-            Hogarí
-          </span>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold tracking-tight text-white">
+              Hogarí
+            </span>
+            <span className="text-xs text-white/40">
+              Tu próximo hogar, más cerca.
+            </span>
+          </div>
         </div>
 
-        <div className="flex gap-8 text-sm font-medium text-gray-500">
+        <div className="flex gap-8 text-sm font-medium text-white/50">
           <Link
             href="#como-funciona"
-            className="hover:text-primary transition-colors"
+            className="transition-colors hover:text-[#FFAD4E]"
           >
             Cómo Funciona
           </Link>
           <Link
             href="#beneficios"
-            className="hover:text-primary transition-colors"
+            className="transition-colors hover:text-[#FFAD4E]"
           >
             Beneficios
           </Link>
-          <Link href="#" className="hover:text-primary transition-colors">
+          <Link href="#" className="transition-colors hover:text-[#FFAD4E]">
             Privacidad
           </Link>
         </div>
 
-        <div className="text-sm text-gray-400">
+        <div className="text-sm text-white/30">
           © {new Date().getFullYear()} Hogarí.
         </div>
       </div>
