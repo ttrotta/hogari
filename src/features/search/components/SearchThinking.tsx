@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Sparkles, Brain, MapPin, Search as SearchIcon } from "lucide-react";
 import { useSearch } from "../context/search-context";
+import Image from "next/image";
 
 const THINKING_MESSAGES = [
   { text: "Analizando tu búsqueda...", icon: SearchIcon },
@@ -36,7 +37,13 @@ export function SearchThinking() {
     <div className="flex flex-col items-center justify-center gap-6 py-16">
       <div className="relative">
         <div className="from-primary-light to-section-orange flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br">
-          <Sparkles className="text-primary-dark h-7 w-7 animate-pulse" />
+          <Image
+            src="/minilogosimple.png"
+            alt="Hogarí Mini Logo"
+            width={40}
+            height={40}
+            className="animate-pulse object-contain"
+          />
         </div>
         <div className="bg-primary absolute -top-1 -right-1 h-3 w-3 animate-ping rounded-full" />
       </div>
