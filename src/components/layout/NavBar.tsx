@@ -1,12 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { UserRound } from "lucide-react";
 
 export function NavBar() {
+  const pathname = usePathname();
+  const isSearchOrProperty = pathname === "/search" || pathname.startsWith("/property/");
+
   return (
     <nav className="border-brand-orange/15 bg-section-warm/85 shadow-brand-orange/5 sticky top-0 z-50 flex w-full items-center justify-between border-b px-4 py-3 shadow-sm backdrop-blur-xl md:px-10">
       <div className="flex flex-1 items-center gap-3">
-        <Link href="#hero" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/mini-hogari-logo.png"
             alt="Hogarí Mini Logo"
@@ -19,24 +25,49 @@ export function NavBar() {
       </div>
 
       <div className="hidden items-center justify-center gap-8 font-medium md:flex">
-        <Link
-          href="#como-funciona"
-          className="hover:text-brand-orange transition-colors"
-        >
-          Cómo Funciona
-        </Link>
-        <Link
-          href="#beneficios"
-          className="hover:text-brand-orange transition-colors"
-        >
-          Beneficios
-        </Link>
-        <Link
-          href="#comunidad"
-          className="hover:text-brand-orange transition-colors"
-        >
-          Comunidad
-        </Link>
+        {isSearchOrProperty ? (
+          <>
+            <Link
+              href="/search?q=Casas más baratas"
+              className="hover:text-brand-orange transition-colors"
+            >
+              Casas más baratas
+            </Link>
+            <Link
+              href="/search?q=Famosos"
+              className="hover:text-brand-orange transition-colors"
+            >
+              Famosos
+            </Link>
+            <Link
+              href="/search?q=Barrios"
+              className="hover:text-brand-orange transition-colors"
+            >
+              Barrios
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              href="#como-funciona"
+              className="hover:text-brand-orange transition-colors"
+            >
+              Cómo Funciona
+            </Link>
+            <Link
+              href="#beneficios"
+              className="hover:text-brand-orange transition-colors"
+            >
+              Beneficios
+            </Link>
+            <Link
+              href="#comunidad"
+              className="hover:text-brand-orange transition-colors"
+            >
+              Comunidad
+            </Link>
+          </>
+        )}
       </div>
 
       <div className="flex flex-1 items-center justify-end gap-6 font-medium">
