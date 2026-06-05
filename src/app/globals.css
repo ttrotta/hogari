@@ -1,11 +1,42 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #FFAD4E;
-  --color-primary-light: #FFF4E6;
-  --color-primary-dark: #E08A20;
-  --color-brand-orange: #FFAD4E;
-  --color-brand-light: #FFE4BA;
-  --color-section-orange: #FFD49A;
-  --color-section-warm: #FFFAF3;
+  --color-primary: #ffad4e;
+  --color-primary-light: #fff4e6;
+  --color-primary-dark: #e08a20;
+  --color-brand-orange: #ffad4e;
+  --color-brand-light: #ffe4ba;
+  --color-section-orange: #ffd49a;
+  --color-section-warm: #fffaf3;
+}
+
+@layer utilities {
+  .text-gradient-orange {
+    background: linear-gradient(135deg, #ffad4e 0%, #e08a20 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-dot-pattern {
+    background-image: radial-gradient(
+      circle,
+      #ffad4e12 1.5px,
+      transparent 1.5px
+    );
+    background-size: 24px 24px;
+  }
+
+  .bg-house-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160' fill='none' stroke='%23cbd5e1' stroke-opacity='0.5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M40 80 L80 48 L120 80 V120 H40 Z'/%3E%3Cpolyline points='64 120 64 88 96 88 96 120'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  .bg-gradient-warm {
+    background: linear-gradient(135deg, #fffaf3 0%, #ffe4ba 50%, #ffd49a 100%);
+  }
+
+  .bg-gradient-cta {
+    background: linear-gradient(170deg, #fffaf3 0%, #ffe4ba 50%, #ffd49a 100%);
+  }
 }
