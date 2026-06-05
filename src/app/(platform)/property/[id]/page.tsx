@@ -1,9 +1,9 @@
 import { findPropertyById } from "@/features/properties/queries";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { ChevronLeft, MapPin, BedDouble, Bath, Maximize2, ExternalLink } from "lucide-react";
+import { MapPin, BedDouble, Bath, Maximize2, ExternalLink } from "lucide-react";
 import { PropertyGallery } from "@/features/properties/components/PropertyGallery";
 import { PropertyMap } from "@/features/properties/components/PropertyMap";
+import { PropertyBackButton } from "@/features/properties/components/PropertyBackButton";
 
 export default async function PropertyPage({
   params,
@@ -39,13 +39,7 @@ export default async function PropertyPage({
   return (
     <div className="mx-auto max-w-6xl px-4 py-6 md:px-8">
       <div className="mb-4">
-        <Link
-          href="/search"
-          className="hover:text-primary-dark inline-flex items-center gap-1 text-sm font-medium text-gray-500 transition-colors"
-        >
-          <ChevronLeft className="h-4 w-4" />
-          Volver a la búsqueda
-        </Link>
+        <PropertyBackButton />
       </div>
 
       <div className="flex flex-col gap-6">
