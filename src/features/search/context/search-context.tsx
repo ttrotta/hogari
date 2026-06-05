@@ -4,7 +4,6 @@ import {
   createContext,
   useContext,
   useState,
-  useTransition,
   useCallback,
   Suspense,
   useEffect,
@@ -22,6 +21,7 @@ interface SearchContextValue {
   hoveredId: string | null;
   setHoveredId: (id: string | null) => void;
   executeSearch: (text: string) => void;
+  cancelSearch: () => void;
   hasSearched: boolean;
 }
 
@@ -33,12 +33,12 @@ function QueryInitializer({
   executeSearch: (text: string) => void;
 }) {
   const searchParams = useSearchParams();
-  const initialized = useRef(false);
+  const prevQ = useRef<string | null>(null);
 
   useEffect(() => {
     const q = searchParams.get("q");
-    if (q && !initialized.current) {
-      initialized.current = true;
+    if (q && q !== prevQ.current) {
+      prevQ.current = q;
       executeSearch(q);
     }
   }, [searchParams, executeSearch]);
@@ -51,7 +51,44 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const [query, setQuery] = useState("");
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
+  const searchIdRef = useRef(0);
+
+  useEffect(() => {
+    const restoreCache = () => {
+      try {
+        const cached = sessionStorage.getItem("hogari_search_cache");
+        if (cached) {
+          const { results: cachedResults, query: cachedQuery, hasSearched: cachedHasSearched } = JSON.parse(cached);
+          const urlParams = new URLSearchParams(window.location.search);
+          const urlQ = urlParams.get("q");
+          if (!urlQ || urlQ === cachedQuery) {
+            setResults(cachedResults || []);
+            setQuery(cachedQuery || "");
+            setHasSearched(cachedHasSearched || false);
+          }
+        }
+      } catch {}
+    };
+
+    requestAnimationFrame(restoreCache);
+  }, []);
+
+  useEffect(() => {
+    if (query || results.length > 0 || hasSearched) {
+      try {
+        sessionStorage.setItem(
+          "hogari_search_cache",
+          JSON.stringify({ results, query, hasSearched })
+        );
+      } catch {}
+    }
+  }, [results, query, hasSearched]);
+
+  const cancelSearch = useCallback(() => {
+    searchIdRef.current += 1;
+    setIsLoading(false);
+  }, []);
 
   const executeSearch = useCallback((text: string) => {
     const trimmed = text.trim();
@@ -59,22 +96,35 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
     setQuery(trimmed);
     setHasSearched(true);
+    setIsLoading(true);
 
-    startTransition(async () => {
-      const data = await hybridSearch({ text: trimmed });
-      setResults(data);
-    });
+    const currentSearchId = ++searchIdRef.current;
+
+    (async () => {
+      try {
+        const data = await hybridSearch({ text: trimmed });
+        if (currentSearchId === searchIdRef.current) {
+          setResults(data);
+          setIsLoading(false);
+        }
+      } catch {
+        if (currentSearchId === searchIdRef.current) {
+          setIsLoading(false);
+        }
+      }
+    })();
   }, []);
 
   return (
     <SearchContext.Provider
       value={{
         results,
-        isLoading: isPending,
+        isLoading,
         query,
         hoveredId,
         setHoveredId,
         executeSearch,
+        cancelSearch,
         hasSearched,
       }}
     >

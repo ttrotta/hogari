@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Sparkles, Brain, MapPin, Search as SearchIcon } from "lucide-react";
+import { useSearch } from "../context/search-context";
 
 const THINKING_MESSAGES = [
   { text: "Analizando tu búsqueda...", icon: SearchIcon },
@@ -12,6 +13,7 @@ const THINKING_MESSAGES = [
 ];
 
 export function SearchThinking() {
+  const { cancelSearch } = useSearch();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -71,6 +73,14 @@ export function SearchThinking() {
           />
         ))}
       </div>
+
+      <button
+        type="button"
+        onClick={cancelSearch}
+        className="mt-4 rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-xs font-semibold text-gray-500 shadow-sm transition-all duration-200 hover:bg-gray-50 hover:text-gray-700 active:scale-95 cursor-pointer"
+      >
+        Cancelar búsqueda
+      </button>
     </div>
   );
 }
