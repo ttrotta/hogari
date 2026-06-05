@@ -19,7 +19,7 @@ const TESTIMONIALS = [
     type: "large",
     quote:
       "Buscar depto era mi peor pesadilla. Hogarí me ahorró semanas de búsqueda y encontré un lugar que realmente se adapta a mi vida. El nivel de personalización es increíble.",
-    author: "María L.",
+    author: "Román B.",
     role: "Beta tester · Bahía Blanca",
     avatar: "ML",
   },
@@ -35,7 +35,7 @@ const TESTIMONIALS = [
     type: "small",
     quote:
       "Me olvidé de estar llamando a inmobiliarias todo el día. Todo en un solo lugar.",
-    author: "Sofía M.",
+    author: "Josefina B.",
     role: "Estudiante",
     avatar: "SM",
   },
@@ -43,7 +43,7 @@ const TESTIMONIALS = [
     type: "large",
     quote:
       "El match perfecto. Me mostraron 3 opciones y las 3 eran exactamente lo que buscaba. Alquilé en menos de una semana sin estresarme.",
-    author: "Tomás R.",
+    author: "Franco P.",
     role: "Programador · CABA",
     avatar: "TR",
   },
@@ -59,7 +59,7 @@ const TESTIMONIALS = [
     type: "small",
     quote:
       "La mejor experiencia buscando alquiler. Me ahorró un montón de dolores de cabeza.",
-    author: "Diego F.",
+    author: "Marcos G.",
     role: "Músico",
     avatar: "DF",
   },
