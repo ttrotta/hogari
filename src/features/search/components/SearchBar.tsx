@@ -4,17 +4,22 @@ import {
   useState,
   useCallback,
   type KeyboardEvent,
-  type FormEvent,
 } from "react";
 import { Search, Send, Loader2 } from "lucide-react";
 import { useSearch } from "../context/search-context";
 
 export function SearchBar() {
-  const { executeSearch, isLoading } = useSearch();
-  const [input, setInput] = useState("");
+  const { executeSearch, isLoading, query } = useSearch();
+  const [input, setInput] = useState(query);
+  const [prevQuery, setPrevQuery] = useState(query);
+
+  if (query !== prevQuery) {
+    setPrevQuery(query);
+    setInput(query);
+  }
 
   const handleSubmit = useCallback(
-    (e?: FormEvent) => {
+    (e?: React.FormEvent) => {
       e?.preventDefault();
       if (!input.trim() || isLoading) return;
       executeSearch(input);

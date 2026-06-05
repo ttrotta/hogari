@@ -6,8 +6,12 @@ import {
   useState,
   useTransition,
   useCallback,
+  Suspense,
+  useEffect,
+  useRef,
   type ReactNode,
 } from "react";
+import { useSearchParams } from "next/navigation";
 import { hybridSearch } from "../actions/hybrid-search";
 import type { HybridSearchResult } from "../types";
 
@@ -22,6 +26,25 @@ interface SearchContextValue {
 }
 
 const SearchContext = createContext<SearchContextValue | null>(null);
+
+function QueryInitializer({
+  executeSearch,
+}: {
+  executeSearch: (text: string) => void;
+}) {
+  const searchParams = useSearchParams();
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    const q = searchParams.get("q");
+    if (q && !initialized.current) {
+      initialized.current = true;
+      executeSearch(q);
+    }
+  }, [searchParams, executeSearch]);
+
+  return null;
+}
 
 export function SearchProvider({ children }: { children: ReactNode }) {
   const [results, setResults] = useState<HybridSearchResult[]>([]);
@@ -55,6 +78,9 @@ export function SearchProvider({ children }: { children: ReactNode }) {
         hasSearched,
       }}
     >
+      <Suspense fallback={null}>
+        <QueryInitializer executeSearch={executeSearch} />
+      </Suspense>
       {children}
     </SearchContext.Provider>
   );
