@@ -67,7 +67,7 @@ export default function WaitlistForm() {
             Enviando...
           </>
         ) : (
-          "Unirme a la beta"
+          "Subscribite a las novedades"
         )}
       </button>
 

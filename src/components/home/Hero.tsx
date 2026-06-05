@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import Waitlist from "./Waitlist";
+import { HeroSearch } from "./HeroSearch";
+import { ScrollIndicator } from "./ScrollIndicator";
 import { WaveDivider } from "@/components/layout/WaveDivider";
 
 const ANIMATED_STYLES = [
@@ -51,7 +52,7 @@ export function Hero() {
           />
         </div>
 
-        <div className="z-20 mt-8 flex w-full flex-1 flex-col items-start md:mt-[min(8vh,6rem)] md:flex-[1.4] 2xl:mt-[min(10vh,8rem)]">
+        <div className="z-20 mt-5 flex w-full flex-1 flex-col items-start md:mt-[min(8vh,-2rem)] md:flex-[1.4] 2xl:mt-[min(10vh,-8rem)]">
           <div className="bg-brand-orange -rotate-3 transform rounded-xl px-6 py-4 text-[min(60px,15vw)] leading-none font-extrabold text-white shadow-2xl transition-transform duration-300 hover:-rotate-1 md:px-6 md:py-3 lg:px-8 lg:py-4 xl:text-[clamp(60px,10vh,90px)] 2xl:px-10 2xl:py-6 2xl:text-[clamp(90px,13vh,140px)]">
             Hogarí
           </div>
@@ -74,7 +75,7 @@ export function Hero() {
           </div>
 
           <div className="mt-8 w-full md:mt-0">
-            <Waitlist />
+            <HeroSearch />
           </div>
         </div>
 
@@ -92,6 +93,7 @@ export function Hero() {
           </div>
         </div>
       </div>
+      <ScrollIndicator />
 
       <WaveDivider topColor="transparent" bottomColor="#FFD49A" />
     </section>

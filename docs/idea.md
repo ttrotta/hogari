@@ -26,7 +26,7 @@ The agent must strictly adhere to the following technologies when generating or 
   - _Client Components_ only for interactive elements like the map or dynamic forms.
 - **UI Styling:** Tailwind CSS. Heavy component libraries or traditional CSS are not allowed.
 - **Database:** PostgreSQL with the **PostGIS** spatial extension enabled.
-- **Map Visualization:** Mapbox GL JS (or MapLibre GL). The use of the traditional Google Maps API is **FORBIDDEN** due to budget and rendering performance constraints.
+- **Map Visualization:** MapLibre GL. The use of the traditional Google Maps API is **FORBIDDEN** due to budget and rendering performance constraints.
 - **AI Orchestration:** Vercel AI SDK to interact with Language Model (LLM) providers via streaming and structured outputs (JSON).
 
 ---
@@ -55,7 +55,7 @@ When asked to write code, you must follow these guidelines:
 
 - Keep functions small, pure, and strictly typed with TypeScript.
 - Explicitly handle Next.js native loading states (`loading.tsx`) and errors (`error.tsx`).
-- Ensure the Mapbox map reuses instances or is mounted correctly within a `useEffect` in an isolated client component to avoid memory leaks or unnecessary re-renders.
+- Ensure the map reuses instances or is mounted correctly within a `useEffect` in an isolated client component to avoid memory leaks or unnecessary re-renders.
 
 ---
 
