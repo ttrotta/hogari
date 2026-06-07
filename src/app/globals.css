@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: var(--font-montserrat), sans-serif;
   --color-primary: #ffad4e;
   --color-primary-light: #fff4e6;
   --color-primary-dark: #e08a20;
@@ -11,6 +12,13 @@
 }
 
 @layer utilities {
+  .force-gpu {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    will-change: transform, opacity;
+  }
+
   .text-gradient-orange {
     background: linear-gradient(135deg, #ffad4e 0%, #e08a20 100%);
     -webkit-background-clip: text;
