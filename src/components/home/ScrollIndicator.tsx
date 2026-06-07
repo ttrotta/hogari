@@ -38,7 +38,7 @@ export function ScrollIndicator() {
   return (
     <div
       ref={container}
-      className="text-brand-orange fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2"
+      className="text-brand-orange fixed bottom-5 left-1/2 z-50 hidden -translate-x-1/2 md:flex"
     >
       <Mouse className="pulsation h-10 w-10" strokeWidth={1.5} />
     </div>
