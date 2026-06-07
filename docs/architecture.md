@@ -77,56 +77,75 @@ hogari/
 │   │   │   │   ├── get-property-by-id.ts
 │   │   │   │   └── search-properties.ts
 │   │   │   ├── components/           ← UI specific to this feature
-│   │   │   │   ├── PropertyCard.tsx
-│   │   │   │   ├── PropertyList.tsx
-│   │   │   │   └── PropertyFilters.tsx
-│   │   │   ├── types.ts              ← Domain types (Property, PropertyFilter, etc.)
+│   │   │   │   ├── PropertyBackButton.tsx
+│   │   │   │   ├── PropertyGallery.tsx
+│   │   │   │   └── PropertyMap.tsx
+│   │   │   ├── types.ts              ← Domain types (Property, etc.)
 │   │   │   └── queries.ts            ← Raw SQL/PostGIS queries for this domain
 │   │   │
 │   │   ├── map/
 │   │   │   ├── components/
-│   │   │   │   ├── MapView.tsx       ← Client component with Maplibre
+│   │   │   │   ├── MapControls.tsx
 │   │   │   │   ├── MapMarker.tsx
-│   │   │   │   └── MapControls.tsx
-│   │   │   └── hooks/
-│   │   │       └── use-map-instance.ts
+│   │   │   │   └── MapView.tsx       ← Client component with Maplibre
+│   │   │   ├── hooks/
+│   │   │   │   └── use-map-instance.ts
+│   │   │   └── types.ts
 │   │   │
 │   │   ├── search/
 │   │   │   ├── actions/
 │   │   │   │   └── hybrid-search.ts  ← PostGIS filter → AI re-rank pipeline
 │   │   │   ├── components/
-│   │   │   │   └── SearchBar.tsx
+│   │   │   │   ├── AISummary.tsx
+│   │   │   │   ├── MobileMapToggle.tsx
+│   │   │   │   ├── SearchBar.tsx
+│   │   │   │   ├── SearchPanel.tsx
+│   │   │   │   ├── SearchResultCard.tsx
+│   │   │   │   ├── SearchResultsList.tsx
+│   │   │   │   └── SearchThinking.tsx
+│   │   │   ├── context/
+│   │   │   │   └── search-context.tsx
 │   │   │   └── types.ts
 │   │   │
 │   │   └── ai/
 │   │       ├── actions/
-│   │       │   ├── rank-properties.ts
-│   │       │   └── explain-recommendation.ts
+│   │       │   ├── explain-recommendation.ts
+│   │       │   └── rank-properties.ts
 │   │       ├── prompts/
 │   │       │   └── ranking-prompt.ts
 │   │       └── types.ts              ← AI response schemas (Zod)
 │   │
 │   ├── components/                   ← SHARED UI (layout, design system)
 │   │   ├── layout/
-│   │   │   ├── NavBar.tsx
 │   │   │   ├── Footer.tsx
+│   │   │   ├── NavBar.tsx
 │   │   │   └── WaveDivider.tsx
 │   │   ├── home/                     ← Landing page sections
+│   │   │   ├── BenefitsGrid.tsx
+│   │   │   ├── FinalCTA.tsx
 │   │   │   ├── Hero.tsx
+│   │   │   ├── HeroSearch.tsx
 │   │   │   ├── ProblemSection.tsx
-│   │   │   └── ...
+│   │   │   ├── ScrollIndicator.tsx
+│   │   │   ├── SolutionSteps.tsx
+│   │   │   ├── TrustSection.tsx
+│   │   │   └── Waitlist.tsx
+│   │   ├── providers/
+│   │   │   └── GsapProvider.tsx
 │   │   └── ui/                       ← Primitives (Button, Input, Card, etc.)
 │   │       ├── Button.tsx
-│   │       ├── Input.tsx
-│   │       └── Card.tsx
+│   │       ├── Card.tsx
+│   │       └── Input.tsx
 │   │
 │   └── lib/                          ← INFRASTRUCTURE / SHARED UTILITIES
 │       ├── db/
 │       │   ├── client.ts             ← Postgres connection (singleton)
+│       │   ├── migrate.ts            ← Database migration runner
 │       │   ├── migrations/           ← SQL migration files
+│       │   │   └── yymmddhhmmss_create_properties.sql
 │       │   └── seed.ts
 │       ├── env.ts                    ← Validated env vars (Zod schema)
-│       └── utils.ts                  ← Generic helpers (cn(), formatCurrency(), etc.)
+│       └── utils.ts                  ← Generic helpers (cn(), etc.)
 │
 ├── pnpm-workspace.yaml               ← Declares packages/* as workspace members
 ├── package.json
