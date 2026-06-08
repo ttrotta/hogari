@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,6 +86,29 @@ export function SolutionSteps() {
           }
         });
       }
+
+      const mascot = sectionRef.current?.querySelector("[data-mascot]");
+      if (mascot) {
+        gsap.from(mascot, {
+          x: 100,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: mascot,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+        gsap.to(mascot, {
+          y: "-=15",
+          rotation: "+=2",
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      }
     },
     { scope: sectionRef },
   );
@@ -92,10 +116,10 @@ export function SolutionSteps() {
   return (
     <section
       ref={sectionRef}
-      className="bg-section-warm w-full px-6 py-24 md:px-12 lg:py-32"
+      className="bg-section-warm relative w-full overflow-hidden px-6 py-24 md:px-12 lg:py-32"
       id="como-funciona"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="relative mx-auto max-w-5xl">
         <div data-heading className="mb-20 text-center">
           <span className="text-primary-dark mb-4 inline-block text-sm font-bold tracking-widest uppercase">
             Cómo funciona
@@ -139,6 +163,19 @@ export function SolutionSteps() {
             );
           })}
         </div>
+      </div>
+
+      <div
+        data-mascot
+        className="pointer-events-none absolute top-12 right-0 z-10 mr-0 h-72 w-72 translate-x-[10%] pr-0 opacity-85 md:top-20 md:h-100 md:w-100 lg:h-125 lg:w-125 lg:translate-x-[15%] xl:h-162.5 xl:w-162.5"
+      >
+        <Image
+          src="/mascot-hogari-hero.png"
+          alt="Mascota Hogarí"
+          fill
+          className="object-contain"
+          priority
+        />
       </div>
     </section>
   );

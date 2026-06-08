@@ -1,15 +1,21 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const PAIN_POINTS = [
-  { number: "01", title: "Pérdida de tiempo" },
-  { number: "02", title: "Cero contexto" },
-  { number: "03", title: "Cero personalización" },
+  { number: "01", title: "Pérdida de tiempo", image: "/1_problem_section.png" },
+  { number: "02", title: "Cero contexto", image: "/2_problem_section.png" },
+  {
+    number: "03",
+    title: "Cero personalización",
+    image: "/3_problem_section.png",
+  },
 ];
 
 const AnimatedText = ({ text }: { text: string }) => {
@@ -18,7 +24,7 @@ const AnimatedText = ({ text }: { text: string }) => {
       {text.split("").map((char, index) => (
         <span
           key={index}
-          className="inline-block font-black uppercase"
+          className="inline-block font-extrabold uppercase"
           style={{ whiteSpace: char === " " ? "pre" : "normal" }}
           data-char
         >
@@ -31,6 +37,7 @@ const AnimatedText = ({ text }: { text: string }) => {
 
 export function ProblemSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useGSAP(
     () => {
@@ -76,7 +83,7 @@ export function ProblemSection() {
       className="bg-section-orange flex min-h-[85vh] w-full items-center px-6 py-32 md:px-12 lg:py-48"
       id="problema"
     >
-      <div className="mx-auto grid max-w-7xl items-start gap-16 lg:grid-cols-2 lg:gap-24">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div data-heading className="lg:sticky lg:top-32">
           <span className="text-primary-dark mb-4 inline-block font-bold tracking-widest uppercase md:text-lg">
             El problema
@@ -91,35 +98,49 @@ export function ProblemSection() {
           </p>
         </div>
 
-        <div className="flex flex-col items-start gap-8 pt-10 md:gap-12">
-          {PAIN_POINTS.map((point, idx) => (
-            <div
-              key={point.number}
-              data-card
-              className={`group relative inline-flex cursor-default flex-col justify-center ${
-                idx === 1 ? "ml-8 md:ml-16" : idx === 2 ? "ml-16 md:ml-32" : ""
-              }`}
-            >
-              {/* Background text (Orange, larger, reveals on hover) */}
-              <span className="text-brand-orange pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2 text-3xl font-black whitespace-nowrap uppercase opacity-0 transition-all duration-500 ease-out group-hover:scale-[1.15] group-hover:opacity-20 md:text-5xl lg:text-[4.5rem]">
-                {point.title}
-              </span>
-
-              {/* Main text */}
-              <h3 className="relative z-10 text-2xl font-black whitespace-nowrap text-orange-950 transition-colors duration-300 group-hover:text-orange-800 md:text-4xl lg:text-5xl">
-                <AnimatedText text={point.title} />
-              </h3>
-
-              {/* Mascot Placeholder */}
-              <div className="pointer-events-none absolute -top-10 right-0 z-20 h-16 w-16 translate-y-8 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 md:-right-12 md:h-20 md:w-20">
-                <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed border-orange-400 bg-orange-100 text-center text-[10px] font-bold text-orange-600 shadow-xl">
-                  <div className="rounded-xl bg-white/50 p-2 backdrop-blur-sm">
-                    🐶 Foto
-                  </div>
+        <div className="w-full max-w-155 overflow-hidden rounded-3xl border-12 border-[#5c3a21] bg-[#5c3a21] shadow-2xl md:border-16 lg:justify-self-end">
+          <div className="flex w-full flex-col bg-[#1b3b2b] p-6 shadow-[inset_0_6px_16px_rgba(0,0,0,0.7)] md:p-8">
+            <div className="flex flex-col items-start gap-6">
+              {PAIN_POINTS.map((point, idx) => (
+                <div
+                  key={point.number}
+                  className="group flex cursor-pointer items-baseline gap-4"
+                  onMouseEnter={() => setHoveredIndex(idx)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <span className="text-lg font-bold text-amber-200/40 transition-colors duration-300 group-hover:text-amber-200/70 md:text-xl">
+                    {point.number}
+                  </span>
+                  <h3 className="text-left text-2xl font-extrabold whitespace-nowrap text-[#f5f2eb] transition-colors duration-300 group-hover:text-amber-200 md:text-3xl lg:text-4xl">
+                    <AnimatedText text={point.title} />
+                  </h3>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+
+            <div className="mt-4 flex w-full justify-center -space-x-8 sm:-space-x-14">
+              {PAIN_POINTS.map((point, idx) => (
+                <div
+                  key={point.number}
+                  className={`relative aspect-square w-[42%] max-w-52.5 transition-all duration-500 ease-out sm:max-w-70 ${
+                    hoveredIndex === idx
+                      ? "z-20 scale-130 opacity-100"
+                      : "z-10 scale-100 opacity-95"
+                  }`}
+                  onMouseEnter={() => setHoveredIndex(idx)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <Image
+                    src={point.image}
+                    alt={point.title}
+                    fill
+                    sizes="(max-width: 768px) 42vw, 18vw"
+                    className="object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
