@@ -1,4 +1,5 @@
 import { NavBar } from "@/components/layout/NavBar";
+import { Footer } from "@/components/layout/Footer";
 
 export default function PlatformLayout({
   children,
@@ -8,9 +9,8 @@ export default function PlatformLayout({
   return (
     <div className="relative flex min-h-screen flex-col bg-white">
       <NavBar />
-      <main className="flex-1">
-        {children}
-      </main>
+      <main className="flex-1">{children}</main>
+      <Footer />
     </div>
   );
 }
