@@ -40,7 +40,7 @@ export default function WaitlistForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="bg-primary hover:bg-primary-dark focus-visible:ring-brand-light flex w-full items-center justify-center rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus-visible:ring-4 disabled:opacity-50 sm:w-auto"
+        className="bg-primary hover:bg-primary-dark focus-visible:ring-brand-light flex w-full cursor-pointer items-center justify-center rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus-visible:ring-4 disabled:opacity-50 sm:w-auto"
       >
         {isPending ? (
           <>

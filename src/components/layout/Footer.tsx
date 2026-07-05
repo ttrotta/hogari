@@ -27,18 +27,18 @@ export function Footer() {
 
         <div className="flex gap-8 text-sm font-medium text-white/50">
           <Link
-            href="#como-funciona"
+            href="/#como-funciona"
             className="transition-colors hover:text-[#FFAD4E]"
           >
             Cómo Funciona
           </Link>
           <Link
-            href="#beneficios"
+            href="/#beneficios"
             className="transition-colors hover:text-[#FFAD4E]"
           >
             Beneficios
           </Link>
-          <Link href="#" className="transition-colors hover:text-[#FFAD4E]">
+          <Link href="/" className="transition-colors hover:text-[#FFAD4E]">
             Privacidad
           </Link>
         </div>

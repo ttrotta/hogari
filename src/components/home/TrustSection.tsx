@@ -75,7 +75,7 @@ const TESTIMONIAL_GROUPS = [
 
 const QuoteIcon = () => (
   <svg
-    className="text-brand-orange/20 absolute -top-3 left-6 h-10 w-10"
+    className="text-brand-orange/20 absolute top-4 left-6 h-10 w-10"
     fill="currentColor"
     viewBox="0 0 24 24"
   >
@@ -91,7 +91,7 @@ interface TestimonialCardProps {
 }
 
 const LargeCard = ({ quote, author, role, avatar }: TestimonialCardProps) => (
-  <div className="hover:border-brand-orange group relative flex h-[300px] flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 shadow-sm transition-colors duration-300">
+  <div className="hover:border-brand-orange group relative flex h-[300px] flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white pt-16 pb-8 px-8 shadow-sm transition-colors duration-300">
     <QuoteIcon />
     <p className="relative z-10 line-clamp-4 text-lg leading-relaxed text-gray-700 italic md:text-xl">
       &quot;{quote}&quot;
