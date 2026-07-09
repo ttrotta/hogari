@@ -173,6 +173,7 @@ export function SolutionSteps() {
           src="/mascot-hogari-hero.png"
           alt="Mascota Hogarí"
           fill
+          sizes="(max-width: 768px) 288px, (max-width: 1024px) 400px, (max-width: 1280px) 500px, 650px"
           className="object-contain"
           priority
         />
