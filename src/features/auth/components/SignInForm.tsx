@@ -43,9 +43,7 @@ export function SignInForm() {
     <div className="w-full max-w-sm space-y-8">
       <div className="text-center">
         <h1 className="text-2xl font-bold">Bienvenido de nuevo</h1>
-        <p className="mt-1 text-sm text-gray-500">
-          Iniciá sesión en tu cuenta
-        </p>
+        <p className="mt-1 text-sm text-gray-500">Iniciá sesión en tu cuenta</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -70,17 +68,21 @@ export function SignInForm() {
           </p>
         )}
 
-        <Button type="submit" disabled={isPending} className="w-full cursor-pointer">
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="w-full cursor-pointer"
+        >
           {isPending ? "Ingresando..." : "Iniciar sesión"}
         </Button>
       </form>
 
       <div className="relative flex items-center gap-3">
-        <span className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
-        <span className="text-xs font-medium uppercase tracking-wider text-brand-orange">
+        <span className="via-brand-orange/30 h-px flex-1 bg-linear-to-r from-transparent to-transparent" />
+        <span className="text-brand-orange text-xs font-medium tracking-wider uppercase">
           o
         </span>
-        <span className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent" />
+        <span className="via-brand-orange/30 h-px flex-1 bg-linear-to-r from-transparent to-transparent" />
       </div>
 
       <Button
@@ -114,7 +116,7 @@ export function SignInForm() {
         ¿No tenés cuenta?{" "}
         <a
           href="/signup"
-          className="font-semibold text-brand-orange hover:underline"
+          className="text-brand-orange font-semibold hover:underline"
         >
           Registrate
         </a>
